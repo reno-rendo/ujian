@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panduan Belajar Santai & Jawaban Uji Lisan - Aplikasi Desa & Kota</title>
+  <style>
+    body {
+      max-width: 850px;
+      margin: 0 auto;
+      padding: 20px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #fcfcfc;
+    }
+    h1 { color: #1a73e8; border-bottom: 3px solid #1a73e8; padding-bottom: 10px; }
+    h2 { color: #0d47a1; margin-top: 35px; background: #e3f2fd; padding: 10px; border-radius: 6px; }
+    .q {
+      background: #fff;
+      padding: 15px;
+      margin: 15px 0 5px 0;
+      border-left: 5px solid #2196f3;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      font-weight: bold;
+    }
+    .a {
+      background: #f1f8e9;
+      padding: 15px;
+      margin: 0 0 20px 20px;
+      border-left: 5px solid #8bc34a;
+      border-radius: 0 6px 6px 0;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    code { background: #ffebee; color: #c62828; padding: 2px 6px; border-radius: 4px; font-family: monospace; }
+    pre { background: #263238; color: #eceff1; padding: 15px; border-radius: 6px; overflow-x: auto; font-family: monospace; }
+    .search-box {
+      background: #e8f5e9;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 25px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #81c784;
+      border-radius: 6px;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+    .analogy {
+      background: #fffde7;
+      border-left: 4px solid #fbc02d;
+      padding: 10px;
+      margin-top: 10px;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🚀 Panduan & Tanya Jawab Uji Lisan Flutter (Desa & Kota)</h1>
+  <p>Penjelasan dibuat santai, to-the-point, dan mudah dipahami untuk persiapan ujian lisan perorangan.</p>
+
+  <div class="search-box">
+    <h3>🔍 Cari Pertanyaan / Istilah:</h3>
+    <input type="text" id="search" placeholder="Contoh: GridView, Sidebar, Navigasi, dll..." onkeyup="filterQuestions()">
+  </div>
+
+  <div id="content">
+
+    <!-- BAGIAN 1: GRIDVIEW -->
+    <div class="topic" data-text="gridview galerygrid card kota">
+      <h2>1. GridView (Halaman Kota)</h2>
+
+      <div class="q">Q: Apa itu GridView.count dan bagaimana cara kerjanya di kode kita?</div>
+      <div class="a">
+        <p><b>Jawaban Simpel:</b> <code>GridView.count</code> adalah widget untuk menampilkan item secara berpetak (grid) mirip galeri foto.</p>
+        <p>Di kode kita:</p>
+        <ul>
+          <li><code>crossAxisCount: 2</code> artinya <b>2 kolom ke samping</b>.</li>
+          <li>Isinya berupa daftar item (5 kecamatan di Kupang) yang masing-masing punya gambar, nama, dan tombol "Detail".</li>
+        </ul>
+        <div class="analogy">💡 <b>Analogi:</b> Seperti rak sepatu yang disusun 2 baris ke samping secara rapi.</div>
+      </div>
+
+      <div class="q">Q: Bagaimana cara memanggil GalleryGrid di halaman KotaPage?</div>
+      <div class="a">
+        <p><b>Jawaban Simpel:</b> Sangat mudah, tinggal dipasang langsung di dalam body Scaffold.</p>
+        <pre><code>class KotaPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: _buildAppBar(context),
+      body: const GalleryGrid(), // <-- Dipanggil di sini
+    );
+  }
+}</code></pre>
+      </div>
+    </div>
+
+    <!-- BAGIAN 2: SIDEBAR -->
+    <div class="topic" data-text="sidebar appsidebar textbutton desa kelurahan">
+      <h2>2. Sidebar (Halaman Desa)</h2>
+
+      <div class="q">Q: Bagaimana cara membuat Sidebar di sebelah kiri?</div>
+      <div class="a">
+        <p><b>Jawaban Simpel:</b> Kita buat class khusus bernama <code>AppSidebar</code>.</p>
+        <p>Strukturnya: <code>Container</code> warna biru dengan lebar <code>150</code>, isinya <code>Column</code> yang berisi beberapa <code>TextButton</code> (untuk 5 kelurahan).</p>
+        <pre><code>class AppSidebar extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 150,
+      color: Colors.blue,
+      child: Column(
+        children: [
+          TextButton(onPressed: ..., child: Text("Kel. Namosain")),
+          // ... kelurahan lainnya
+        ],
+      ),
+    );
+  }
+}</code></pre>
+      </div>
+
+      <div class="q">Q: Bagaimana cara menggabungkan Sidebar dan Konten di kanan?</div>
+      <div class="a">
+        <p><b>Jawaban Simpel:</b> Pakai widget <code>Row</code>! Karena <code>Row</code> menyusun ke samping:</p>
+        <ul>
+          <li>Anak pertama: <code>AppSidebar()</code> (lebar 150).</li>
+          <li>Anak kedua: <code>Expanded(child: Center(child: Text(...)))</code> (memakai sisa layar di sebelah kanan).</li>
+        </ul>
+        <div class="analogy">💡 <b>Analogi:</b> Layar dibagi dua: sebelah kiri laci menu (sidebar), sebelah kanan meja kerja utama (konten).</div>
+      </div>
+    </div>
+
+    <!-- BAGIAN 3: NAVIGASI -->
+    <div class="topic" data-text="navigasi pushnomark materialpageroute menubutton">
+      <h2>3. Navigasi & MenuButton</h2>
+
+      <div class="q">Q: Bagaimana cara kerja pindah halaman di aplikasi ini?</div>
+      <div class="a">
+        <p><b>Jawaban Simpel:</b> Kita pakai perintah <code>Navigator.push(...)</code>.</p>
+        <p>Agar transisinya instan tanpa animasi (sesuai aturan tugas), kita bungkus dalam fungsi bantuan <code>pushNoAnim()</code> yang menggunakan <code>PageRouteBuilder</code> dengan durasi nol.</p>
+        <pre><code>void pushNoAnim(BuildContext context, Widget page) {
+  Navigator.push(
+    context,
+    PageRouteBuilder(
+      pageBuilder: (context, anim1, anim2) => page,
+      transitionsBuilder: (context, anim1, anim2, child) => child, // Tanpa animasi
+      transitionDuration: Duration.zero,
+    ),
+  );
+}</code></pre>
+      </div>
+
+      <div class="q">Q: Apa itu MenuButton dan di mana letaknya?</div>
+      <div class="a">
+        <p><b>Jawaban Simpel:</b> <code>MenuButton</code> adalah tombol khusus buatan kita sendiri untuk menu bar atas (Home | Desa | Kota | About US).</p>
+        <p>Diletakkan di dalam <code>AppBar</code> menggunakan <code>Row</code> agar posisinya berjajar rapi ke samping.</p>
+      </div>
+    </div>
+
+    <!-- BAGIAN 4: GAMBAR & STRUKTUR -->
+    <div class="topic" data-text="gambar asset pubspec folder kupang ntt">
+      <h2>4. Gambar & Data Kota Kupang</h2>
+
+      <div class="q">Q: Bagaimana cara menampilkan gambar dari folder lokal?</div>
+      <div class="a">
+        <p><b>Jawaban Simpel:</b> Pakai <code>Image.asset("gambar/nama_file.jpg", height: 100)</code>.</p>
+        <p>Syaratnya: folder <code>gambar/</code> harus didaftarkan di file <code>pubspec.yaml</code> pada bagian <code>assets: - gambar/</code>.</p>
+      </div>
+
+      <div class="q">Q: Kenapa kota yang digunakan adalah Kota Kupang (NTT)?</div>
+      <div class="a">
+        <p><b>Jawaban Simpel:</b> Karena instruksi tugas mengharuskan nama kota nyata (bukan A, B, C). Kami memilih kecamatan-kecamatan di Kota Kupang, NTT (seperti Kelapa Lima, Maulafa, Alak, dll.) beserta kelurahannya.</p>
+      </div>
+    </div>
+
+    <!-- BAGIAN 5: TIPS UJI LISAN -->
+    <div class="topic" data-text="tips trik ujian lisan nilai">
+      <h2>5. 💡 Tips Penting Saat Ujian Lisan Individual</h2>
+      <div class="a">
+        <ul>
+          <li><b>Jangan panik:</b> Pahami konsep dasarnya saja (Mana GridView? Mana Sidebar? Bagaimana cara pindah halaman?).</li>
+          <li><b>Pahami file <code>main.dart</code>:</b> Ingat bahwa semua kode digabung dalam 1 file ini.</li>
+          <li><b>Tahu fungsi Widget Utama:</b>
+            <ul>
+              <li><code>Scaffold</code> = Kerangka dasar halaman (ada AppBar & Body).</li>
+              <li><code>Column</code> = Susun ke bawah.</li>
+              <li><code>Row</code> = Susun ke samping.</li>
+              <li><code>Expanded</code> = Mengisi sisa ruang kosong.</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function filterQuestions() {
+      let input = document.getElementById('search').value.toLowerCase();
+      let topics = document.getElementsByClassName('topic');
+      
+      for (let i = 0; i < topics.length; i++) {
+        let text = topics[i].getAttribute('data-text') + topics[i].innerText.toLowerCase();
+        if (text.includes(input)) {
+          topics[i].style.display = "";
+        } else {
+          topics[i].style.display = "none";
+        }
+      }
+    }
+  </script>
+
+</body>
+</html>
